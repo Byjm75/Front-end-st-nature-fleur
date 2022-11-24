@@ -1,16 +1,22 @@
 import { FormEvent, useRef } from "react";
 import "./Formulaire.css";
 
+interface Formulaireprops {
+  //je rappel l'interface pour faire les props (propriété) typées
+  action: (email: string | undefined, password: string | undefined) => void;
+}
 
-export const Formulaire = () => {
+export const Formulaire = ({ action }: Formulaireprops) => {
   const emailElement = useRef<HTMLInputElement>(null);
   const passwordElement = useRef<HTMLInputElement>(null);
 
   const handleSubmitForm = (e: FormEvent) => {
+    // On configure les valeurs du boutton à récupérer
     e.preventDefault();
     console.log("button form clicked");
     console.log(emailElement.current?.value);
     console.log(passwordElement.current?.value);
+    action(emailElement.current?.value, passwordElement.current?.value); // Avec la valeur 'action' c'est 'action' que l'on monte vers le parent Inscription.
   };
 
   return (
@@ -38,12 +44,14 @@ export const Formulaire = () => {
           />
           <label htmlFor="passwordUser">Mot de passe</label>
         </div>
-        <button className="mt-3 btn btn-primary" type="submit">
+        <button
+          className="mt-3 btn btn-primary"
+          onClick={handleSubmitForm} // on récupére les valeurs du boutton avec onClick et on le nomme (handleSubmit)
+          type="submit"
+        >
           Se connecter
         </button>
       </form>
     </div>
   );
 };
-
-

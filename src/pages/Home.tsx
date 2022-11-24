@@ -1,5 +1,5 @@
-import SideBar from '../components/SideBar';
-import { useState } from 'react';
+import SideBar from "../components/SideBar";
+import { useState } from "react";
 
 export interface Plante {
   id: string;
@@ -23,7 +23,7 @@ const Home = () => {
   ]);
 
   const handleCheckCategories = (mesCategoriesChecked: string[]) => {
-    console.log('categories checked', mesCategoriesChecked);
+    console.log("categories checked", mesCategoriesChecked);
     /**
      * Filtrer nos données ici
      */
@@ -42,20 +42,22 @@ const Home = () => {
   };
 
   return (
-    <div className='d-flex align-items-stretch'>
+    <div className="d-flex align-items-stretch">
       <SideBar
         listElementPlant={listePlantes}
         onChangeCategoriesCheck={handleCheckCategories}
       />
-      <div className='container-fluid custom-main'>
+      <div className="container-fluid custom-main">
         {listPlantDisplayed.map((plante, i) => (
           <li key={i}>
             {plante.name} - {plante.category} - 💵 {plante.unitprice_ati}€ - ⭐
             {plante.rating}
           </li>
-        ))}{' '}
+        ))}{" "}
       </div>
     </div>
   );
 };
 export default Home;
+
+//http://localhost:8080/api/plant
